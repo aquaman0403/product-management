@@ -1,16 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-    res.render("client/pages/products/index");
-});
+const controller = require("../../controllers/client/product.controller");
 
-router.get("/create", async (req, res) => {
-    res.render("client/pages/products/index");
-});
-
-router.get("/edit", async (req, res) => {
-    res.render("client/pages/products/index");
-});
+router.get("/", controller.index);
 
 module.exports = router;
