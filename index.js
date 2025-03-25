@@ -7,7 +7,11 @@ const routeAdmin = require("./routes/admin/index.route");
 const app = express();
 const port = process.env.PORT;
 
+const systemConfig = require("./config/system");
+
 database.connect();
+
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
 
 app.set("view engine", "pug");
 app.set("views", "./views");
