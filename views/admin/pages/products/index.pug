@@ -12,20 +12,24 @@ block main
                 th Giá
                 th Trạng thái
                 th Hành động
-        tbody 
-            tr
-                td 1
-                td
-                    img(
-                        src="https://dummyjson.com/icon/abc123/150"
-                        alt="Sản phẩm 1"
-                        width="100px"
-                        height="auto"
-                    )
-                td Sản phẩm 1
-                td 100$
-                td
-                    a(href="a", class="badge bg-success") Hoạt động
-                td
-                    button(class="btn btn-warning btn-sm") Sửa
-                    button(class="btn btn-danger btn-sm ms-1") Xóa
+        tbody
+            each item, index in products
+                tr
+                    td #{index + 1}
+                    td
+                        img(
+                            src=item.thumbnail
+                            alt=item.title
+                            width="100px"
+                            height="auto"
+                        )
+                    td #{item.title}
+                    td #{item.price}$
+                    td
+                        if (item.status == 'active')
+                            a(href="#", class="badge bg-success") Hoạt động
+                        else
+                            a(href="#", class="badge bg-danger") Dừng hoạt động
+                    td
+                        button(class="btn btn-warning btn-sm") Sửa
+                        button(class="btn btn-danger btn-sm ms-1") Xóa
