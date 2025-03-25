@@ -1,0 +1,31 @@
+extends ../../layouts/default.pug
+
+block main
+    h1 Trang sản phẩm
+
+    table.table.table-hover.table-sm
+        thead 
+            tr
+                th STT 
+                th Hình ảnh 
+                th Tiêu đề
+                th Giá
+                th Trạng thái
+                th Hành động
+        tbody 
+            tr
+                td 1
+                td
+                    img(
+                        src="https://dummyjson.com/icon/abc123/150"
+                        alt="Sản phẩm 1"
+                        width="100px"
+                        height="auto"
+                    )
+                td Sản phẩm 1
+                td 100$
+                td
+                    a(href="a", class="badge bg-success") Hoạt động
+                td
+                    button(class="btn btn-warning btn-sm") Sửa
+                    button(class="btn btn-danger btn-sm ms-1") Xóa
