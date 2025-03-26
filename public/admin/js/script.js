@@ -18,6 +18,7 @@ if (buttonStatus.length > 0) {
     })
 }
 
+// Form search
 const formSearch = document.querySelector("#form-search");
 if (formSearch) {
     let url = new URL(window.location.href)
