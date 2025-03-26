@@ -1,0 +1,40 @@
+mixin pagination(pagination)
+    nav
+        ul(class="pagination justify-content-center")
+            if (pagination.currentPage > 1)
+                li(class="page-item")
+                    button(
+                    class="page-link"
+                    button-pagination=pagination.currentPage - 1
+                ) Trang trước
+
+            - const delta = 2;
+            - const startPage = Math.max(1, pagination.currentPage - delta);
+            - const endPage = Math.min(pagination.totalPages, pagination.currentPage + delta);
+
+            // Nếu trang đầu tiên không nằm trong khoảng hiển thị thì hiển thị nó (và dấu "...")
+            if (startPage > 1)
+                li(class="page-item")
+                    button(class="page-link" button-pagination=1) 1
+            if (startPage > 2)
+                li(class="page-item disabled")
+                    span(class="page-link") ...
+
+            -   for (var i = startPage; i <= endPage; i++)
+                li(class=`page-item ${pagination.currentPage == i ? 'active' : ''}`)
+                    button(class="page-link" button-pagination=i) #{i}
+
+            // Nếu trang cuối cùng không nằm trong khoảng hiển thị thì hiển thị nó (và dấu "...")
+            if (endPage < pagination.totalPages)
+                if (endPage < pagination.totalPages - 1)
+                    li(class="page-item disabled")
+                        span(class="page-link") ...
+                li(class="page-item")
+                    button(class="page-link" button-pagination=pagination.totalPages) #{pagination.totalPages}
+
+            if (pagination.currentPage < pagination.totalPages)
+                li(class="page-item")
+                    button(
+                    class="page-link"
+                    button-pagination=pagination.currentPage + 1
+                ) Trang sau
