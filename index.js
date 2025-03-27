@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 require("dotenv").config();
 const mongoose = require("mongoose");
@@ -7,7 +8,9 @@ const route = require("./routes/client/index.route");
 const routeAdmin = require("./routes/admin/index.route");
 const app = express();
 const port = process.env.PORT;
+
 app.use(methodOverride("_method"));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const systemConfig = require("./config/system");
 
