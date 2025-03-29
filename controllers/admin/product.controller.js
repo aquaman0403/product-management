@@ -59,6 +59,8 @@ module.exports.changeStatus = async (req, res) => {
         { status: status }
     );
 
+    req.flash("success", "Cập nhật trạng thái thành công!");
+
     res.redirect("back");
 }
 
@@ -73,16 +75,19 @@ module.exports.changeMulti = async (req, res) => {
                 { _id: { $in: ids } },
                 { status: "active" }
             );
+            req.flash("success", `Cập nhật trạng thái thành công của ${ids.length} sản phẩm!`);
             break;
         case "inactive":
             await Product.updateMany(
                 { _id: { $in: ids } },
                 { status: "inactive" }
             );
+            req.flash("success", `Cập nhật trạng thái thành công của ${ids.length} sản phẩm!`);
             break;
         
         case "delete-all":
             await Product.updateMany({_id: { $in: ids }}, { deleted: true, deletedAt: new Date });
+            req.flash("success", `Đã xoá ${ids.length} sản phẩm!`);
             break;
         
         case "change-position":
@@ -94,6 +99,7 @@ module.exports.changeMulti = async (req, res) => {
                     { position: position }
                 )
             }
+            req.flash("success", `Cập nhật trạng thái thành công của ${ids.length} sản phẩm!`);
             break;
         
         default:
@@ -109,5 +115,6 @@ module.exports.deleteItem = async (req, res) => {
 
     // await Product.deleteOne({_id : id}); xoá hoàn toàn khỏi db
     await Product.updateOne({_id: id}, {deleted: true, deletedAt: new Date});
+    req.flash("success", `Đã xoá sản phẩm!`);
     res.redirect("back");
 }
