@@ -72,7 +72,10 @@ block main
                                 else
                                     a(href="javascript:;" data-status="inactive" data-id=item.id button-change-status class="badge bg-danger") Dừng hoạt động
                             td
-                                button(class="btn btn-warning btn-sm") Sửa
+                                a(
+                                    class="btn btn-warning btn-sm"
+                                    href=`${prefixAdmin}/products/edit/${item.id}`
+                                ) Sửa
                                 button(class="btn btn-danger btn-sm ms-1" data-id=item.id button-delete) Xóa
 
     + pagination(pagination)
