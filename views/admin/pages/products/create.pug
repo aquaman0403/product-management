@@ -56,7 +56,7 @@ block main
                 value="0"
                 min="0"
             )
-        div(class="form-group  mb-3")
+        div(class="form-group  mb-3" upload-image)
             label(for="thumbnail") Hình ảnh
             input(
                 type="file"
@@ -64,6 +64,12 @@ block main
                 id="thumbnail"
                 name="thumbnail"
                 accept="image/*"
+                upload-image-input
+            )
+            img(
+                src=""
+                upload-image-preview
+                class="image-preview"
             )
         div(class="form-group  mb-3")
             label(for="position") Vị trí
@@ -98,3 +104,4 @@ block main
             button(type="submit" class="btn btn-primary") Thêm sản phẩm mới
 
     script(src="/admin/js/product.js")
+    script(src="/admin/js/script.js")
