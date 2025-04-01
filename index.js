@@ -23,7 +23,7 @@ database.connect();
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 
 app.set("view engine", "pug");
-app.set("views", "./views");
+app.set("views", `${__dirname}/views`);
 
 // Flash
 app.use(cookieParser("Dupham2003bgHehehehehe"));
@@ -31,7 +31,7 @@ app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
 
 // public
-app.use(express.static("public"));
+app.use(express.static(`${__dirname}/public`));
 
 //route
 route(app);
