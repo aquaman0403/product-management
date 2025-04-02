@@ -83,3 +83,43 @@ if (uploadImage) {
     });
 }
 // End Upload image
+
+// Sort
+const sort = document.querySelector("[sort]");
+if (sort) {
+    let url = new URL(window.location.href);
+    const sortSelect = sort.querySelector("[sort-select]");
+    const sortClear = sort.querySelector("[sort-clear]");
+
+    sortSelect.addEventListener("change", (e) => {
+        const value = e.target.value;
+        if (!value) return;
+
+        const [sortKey, sortValue] = value.split("-");
+        
+        if (sortKey && sortValue) {
+            url.searchParams.set("sortKey", sortKey);
+            url.searchParams.set("sortValue", sortValue);
+        } else {
+            url.searchParams.delete("sortKey");
+            url.searchParams.delete("sortValue");
+        }
+
+        window.location.href = url.toString();
+    });
+
+    // Xóa bộ lọc sắp xếp khi bấm nút "Clear"
+    sortClear.addEventListener("click", () => {
+        url.searchParams.delete("sortKey");
+        url.searchParams.delete("sortValue");
+        window.location.href = url.toString();
+    });
+
+    // Khi tải trang, đặt lại giá trị của select nếu có sắp xếp trước đó
+    const currentSortKey = url.searchParams.get("sortKey");
+    const currentSortValue = url.searchParams.get("sortValue");
+    if (currentSortKey && currentSortValue) {
+        sortSelect.value = `${currentSortKey}-${currentSortValue}`;
+    }
+}
+// End Sort
