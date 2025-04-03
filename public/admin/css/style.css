@@ -58,7 +58,6 @@
 .inner-menu ul li a:hover {
   background-color: #2e2e42;
   color: #ffffff;
-  transform: translateX(5px);
   box-shadow: 2px 2px 6px rgba(255, 255, 255, 0.05);
 }
 
