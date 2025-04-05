@@ -5,16 +5,17 @@ include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
 include ../../mixins/alert.pug
 include ../../mixins/sort.pug
+include ../../mixins/table-tree.pug
 
 block main
-    h1 Trang sanh mục sản phẩm
+    h1 Trang danh mục sản phẩm
 
     .card.mb-3
-        .card-header Danh sách sản phẩm
+        .card-header Danh mục sản phẩm
         .card-body
             .row
                 .col-8
-                    h4 Danh sách sản phẩm
+                    h4 Danh mục sản phẩm
                 .col-4
                     a(
                         href=`${prefixAdmin}/product-categories/create`
@@ -35,39 +36,4 @@ block main
                         th Trạng thái
                         th Hành động
                 tbody
-                    each item, index in records
-                        tr
-                            td
-                                input(type="checkbox" name="id" value=item.id)
-                            td #{index + 1}
-                            td
-                                img(
-                                    src=item.thumbnail
-                                    alt=item.title
-                                    width="100px"
-                                    height="auto"
-                                )
-                            td #{item.title}
-                            td 
-                                input(
-                                    type="number"
-                                    value=item.position
-                                    style="width: 60px;"
-                                    min="1"
-                                    name="position"
-                                )
-                            td
-                                if (item.status == 'active')
-                                    a(href="javascript:;" data-status="active" data-id=item.id button-change-status class="badge bg-success") Hoạt động
-                                else
-                                    a(href="javascript:;" data-status="inactive" data-id=item.id button-change-status class="badge bg-danger") Dừng hoạt động
-                            td
-                                a(
-                                    class="btn btn-info btn-sm"
-                                    href=`${prefixAdmin}/product-categories/detail/${item.id}`
-                                ) Chi tiết
-                                a(
-                                    class="btn btn-warning btn-sm"
-                                    href=`${prefixAdmin}/product-categories/edit/${item.id}`
-                                ) Sửa
-                                button(class="btn btn-danger btn-sm ms-1" data-id=item.id button-delete) Xóa
+                    +table-tree(records)
