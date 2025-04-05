@@ -1,7 +1,7 @@
 const ProductCategory = require("../../models/product-category.model");
 
 const systemConfig = require("../../config/system");
-const { createTree } = require("../../helpers/createTree");
+const { tree } = require("../../helpers/createTree");
 
 // [GET] /admin/product-categories
 module.exports.index = async (req, res) => {
@@ -10,7 +10,7 @@ module.exports.index = async (req, res) => {
     }
 
     const records = await ProductCategory.find(find);
-    const newRecords = createTree(records)
+    const newRecords = tree(records)
 
     res.render("admin/pages/product-categories/index", {
         pageTitle: "Danh mục sản phẩm",
@@ -25,7 +25,7 @@ module.exports.create = async (req, res) => {
     }
 
     const records = await ProductCategory.find(find)
-    const newRecords = createTree(records)
+    const newRecords = tree(records)
 
 
     res.render("admin/pages/product-categories/create", {

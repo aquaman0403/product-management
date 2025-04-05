@@ -1,10 +1,10 @@
 mixin table-tree(records, level = 1)
-    each item, index in records
+    each item in records
         -   const prefix = Array(level + 1).join('--')
         tr
             td
                 input(type="checkbox" name="id" value=item.id)
-            td #{index + 1}
+            td #{item.index}
             td
                 img(
                     src=item.thumbnail
