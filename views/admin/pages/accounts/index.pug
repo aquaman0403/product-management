@@ -1,0 +1,82 @@
+extends ../../layouts/default.pug
+
+block main
+    h1(class="mb-4") Danh sách tài khoản
+
+    .card.mb-3.shadow
+        .card-header.bg-primary.text-white
+            .row.align-items-center
+                .col
+                    h5.mb-0 Danh sách tài khoản
+                .col-auto
+                    a(
+                        href=`${prefixAdmin}/accounts/create`
+                        class="btn btn-light btn-sm"
+                    ) 
+                        i.bi.bi-plus-circle.me-1
+                        | Thêm mới
+
+        .card-body
+            .table-responsive
+                table.table.table-hover.table-bordered.text-center
+                    thead.table-dark
+                        tr
+                            th(scope="col" style="width: 50px;") STT
+                            th(scope="col") Avatar
+                            th(scope="col") Họ tên
+                            th(scope="col") Email
+                            th(scope="col") Số điện thoại
+                            th(scope="col") Phân quyền
+                            th(scope="col") Trạng thái
+                            th(scope="col" style="width: 180px;") Hành động
+                    tbody
+                        each account, index in accounts
+                            tr
+                                td(scope="row") #{index + 1}
+                                td
+                                    img(
+                                        src=account.avatar || "https://via.placeholder.com/50x50"
+                                        width="40" 
+                                        height="40"
+                                        style="border-radius: 50%; object-fit: cover"
+                                    )
+                                td #{account.fullName}
+                                td #{account.email}
+                                td #{account.phone}
+                                td 
+                                    span.badge.bg-info #{account.role.title}
+                                td
+                                    if (account.status === "active")
+                                        span.badge.bg-success Hoạt động
+                                    else
+                                        span.badge.bg-secondary Dừng hoạt động
+                                td
+                                    .d-flex.flex-wrap.justify-content-center.gap-1
+                                        a(
+                                            href=`${prefixAdmin}/accounts/detail/${account._id}`
+                                            class="btn btn-info btn-sm btn-action"
+                                            title="Xem chi tiết"
+                                        )
+                                            i.bi.bi-eye.me-1
+                                            span.d-none.d-md-inline Xem
+
+                                        a(
+                                            href=`${prefixAdmin}/accounts/edit/${account._id}`
+                                            class="btn btn-warning btn-sm btn-action"
+                                            title="Chỉnh sửa"
+                                        )
+                                            i.bi.bi-pencil-square.me-1
+                                            span.d-none.d-md-inline Sửa
+
+                                        button(
+                                            type="button"
+                                            class="btn btn-danger btn-sm btn-action"
+                                            title="Xóa"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#deleteAccountModal"
+                                        )
+                                            i.bi.bi-trash3.me-1
+                                            span.d-none.d-md-inline Xóa
+                        else
+                            tr
+                                td(colspan="8" class="text-center text-muted py-4") Không tìm thấy tài khoản nào.
