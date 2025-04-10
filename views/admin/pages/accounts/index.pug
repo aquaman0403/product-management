@@ -46,10 +46,11 @@ block main
                                 td 
                                     span.badge.bg-info #{account.role.title}
                                 td
-                                    if (account.status === "active")
-                                        span.badge.bg-success Hoạt động
+                                    if (account.status === 'active')
+                                        a(href="javascript:;" data-status="active" data-id=account.id button-change-status class="badge bg-success") Hoạt động
                                     else
-                                        span.badge.bg-secondary Dừng hoạt động
+                                        a(href="javascript:;" data-status="inactive" data-id=account.id button-change-status class="badge bg-danger") Dừng hoạt động
+
                                 td
                                     .d-flex.flex-wrap.justify-content-center.gap-1
                                         a(

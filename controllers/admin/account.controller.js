@@ -10,7 +10,7 @@ module.exports.index = async (req, res) => {
         deleted: false
     }
 
-    const records = await Account.find(find).populate("role_id"); 
+    const records = await Account.find(find).populate("role_id");
 
     for (const record of records) {
         const role = await Role.findOne({
@@ -54,4 +54,61 @@ module.exports.createPost = async (req, res) => {
 
         res.redirect(`${systemConfig.prefixAdmin}/accounts`)
     }
-} 
+}
+
+module.exports.edit = async (req, res) => {
+    let find = {
+        _id: req.params.id,
+        deleted: false
+    }
+
+    try {
+        const data = await Account.findOne(find)
+
+        const roles = await Role.find({
+            deleted: false
+        })
+
+        res.render("admin/pages/accounts/edit", {
+            pageTitle: "Chỉnh sửa tài khoản",
+            data: data,
+            roles: roles
+        })
+    } catch (error) {
+        res.redirect(`${systemConfig.prefixAdmin}/accounts`)
+    }
+}
+
+module.exports.editPatch = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const emailExist = await Account.findOne({
+            _id: { $ne: id },
+            email: req.body.email,
+            deleted: false
+        });
+
+        if (emailExist) {
+            req.flash('error', `Email: ${req.body.email} đã tồn tại!`);
+            return res.redirect(req.get('Referrer') || `${systemConfig.prefixAdmin}/accounts`);
+        }
+
+        const updateData = { ...req.body };
+
+        if (updateData.password) {
+            updateData.password = md5(updateData.password);
+        } else {
+            delete updateData.password;
+        }
+
+        await Account.updateOne({ _id: id }, updateData);
+
+        req.flash('success', 'Cập nhật tài khoản thành công!');
+        res.redirect(`${systemConfig.prefixAdmin}/accounts`);
+    } catch (error) {
+        console.error(error);
+        req.flash('error', 'Lỗi khi cập nhật tài khoản');
+        res.redirect(req.get('Referrer') || `${systemConfig.prefixAdmin}/accounts/edit/${id}`);
+    }
+};
