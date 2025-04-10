@@ -1,0 +1,17 @@
+extends ../../layouts/auth.pug
+include ../../mixins/alert.pug
+
+block main
+    if locals.messages && locals.messages.error
+        +alert-error(5000)
+        
+    form(method="POST" action=`${prefixAdmin}/auth/login`)
+        div(class="mb-3")
+            label(for="email" class="form-label") Email
+            input(type="email" class="form-control" id="email" name="email" placeholder="Nhập email" required)
+        div(class="mb-3")
+            label(for="password" class="form-label") Mật khẩu
+            input(type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required)
+        div(class="d-grid")
+            button(type="submit" class="btn btn-primary") Đăng nhập
+    script(src="/admin/js/script.js")
