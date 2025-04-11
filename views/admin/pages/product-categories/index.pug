@@ -8,32 +8,36 @@ include ../../mixins/sort.pug
 include ../../mixins/table-tree.pug
 
 block main
-    h1 Trang danh mục sản phẩm
+    if (role.permissions.includes("products-category_view"))
+        h1 Trang danh mục sản phẩm
 
-    .card.mb-3
-        .card-header Danh mục sản phẩm
-        .card-body
-            .row
-                .col-8
-                    h4 Danh mục sản phẩm
-                .col-4
-                    a(
-                        href=`${prefixAdmin}/product-categories/create`
-                        class="btn btn-outline-success float-end"
-                    ) + Thêm mới
-            table(
-                class="table table-hover table-sm"
-                checkbox-multi
-            )
-                thead 
-                    tr  
-                        th
-                            input(type="checkbox" name="check-all")
-                        th STT 
-                        th Hình ảnh 
-                        th Tiêu đề
-                        th Vị trí
-                        th Trạng thái
-                        th Hành động
-                tbody
-                    +table-tree(records)
+        .card.mb-3
+            .card-header Danh mục sản phẩm
+            .card-body
+                .row
+                    .col-8
+                        h4 Danh mục sản phẩm
+                    .col-4
+                        if (role.permissions.includes("products-category_create"))
+                            a(
+                                href=`${prefixAdmin}/product-categories/create`
+                                class="btn btn-outline-success float-end"
+                            ) + Thêm mới
+                table(
+                    class="table table-hover table-sm"
+                    checkbox-multi
+                )
+                    thead 
+                        tr  
+                            th
+                                input(type="checkbox" name="check-all")
+                            th STT 
+                            th Hình ảnh 
+                            th Tiêu đề
+                            th Vị trí
+                            th Trạng thái
+                            th Hành động
+                    tbody
+                        +table-tree(records)
+    else
+        h1 Bạn không có quyền truy cập

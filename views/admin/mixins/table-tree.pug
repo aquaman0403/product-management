@@ -22,19 +22,27 @@ mixin table-tree(records, level = 1)
                     name="position"
                 )
             td
-                if (item.status == 'active')
-                    a(href="javascript:;" data-status="active" data-id=item.id button-change-status class="badge bg-success") Hoạt động
-                else
-                    a(href="javascript:;" data-status="inactive" data-id=item.id button-change-status class="badge bg-danger") Dừng hoạt động
+                if(role.permissions.includes("products-category_edit"))
+                    if (item.status == 'active')
+                        a(href="javascript:;" data-status="active" data-id=item.id button-change-status class="badge bg-success") Hoạt động
+                    else
+                        a(href="javascript:;" data-status="inactive" data-id=item.id button-change-status class="badge bg-danger") Dừng hoạt động
+                else 
+                    if (item.status == 'active')
+                        span(class="badge bg-success") Hoạt động
+                    else
+                        span(class="badge bg-danger") Dừng hoạt động
             td
                 a(
                     class="btn btn-info btn-sm"
                     href=`${prefixAdmin}/product-categories/detail/${item.id}`
                 ) Chi tiết
-                a(
-                    class="btn btn-warning btn-sm"
-                    href=`${prefixAdmin}/product-categories/edit/${item.id}`
-                ) Sửa
-                button(class="btn btn-danger btn-sm ms-1" data-id=item.id button-delete) Xóa
+                if(role.permissions.includes("products-category_edit"))
+                    a(
+                        class="btn btn-warning btn-sm"
+                        href=`${prefixAdmin}/product-categories/edit/${item.id}`
+                    ) Sửa
+                if(role.permissions.includes("products-category_delete"))
+                    button(class="btn btn-danger btn-sm ms-1" data-id=item.id button-delete) Xóa
         if item.children && item.children.length > 0
             +table-tree(item.children, level + 1)

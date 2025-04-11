@@ -2,111 +2,112 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
-  +alert-error(5000)
-  .container-fluid
-    h1(class="mb-4") Thêm tài khoản mới 
+  if(role.permissions.includes("accounts_create"))
+    +alert-error(5000)
+    .container-fluid
+      h1(class="mb-4") Thêm tài khoản mới 
 
-    form(
-      action=`${prefixAdmin}/accounts/create`
-      method="POST"
-      enctype="multipart/form-data"
-      id="accountForm"
-    )
-      .card.shadow-sm
-        .card-body
-          .row
-            .col-md-6
-              .form-group.mb-3
-                label(for="fullName") Họ tên
-                input(
-                  type="text"
-                  class="form-control"
-                  id="fullName"
-                  name="fullName"
-                  required
-                )
-
-              .form-group.mb-3
-                label(for="email") Email
-                input(
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                  required
-                )
-
-              .form-group.mb-3
-                label(for="password") Mật khẩu
-                input(
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  name="password"
-                  required
-                )
-
-              .form-group.mb-3
-                label(for="phone") Số điện thoại
-                input(
-                  type="tel"
-                  class="form-control"
-                  id="phone"
-                  name="phone"
-                  placeholder="Nhập số điện thoại"
-                )
-
-            .col-md-6
-              .form-group.mb-3(upload-image)
-                label(for="avatar" class="form-label fw-semibold") Hình ảnh
-                .input-group
+      form(
+        action=`${prefixAdmin}/accounts/create`
+        method="POST"
+        enctype="multipart/form-data"
+        id="accountForm"
+      )
+        .card.shadow-sm
+          .card-body
+            .row
+              .col-md-6
+                .form-group.mb-3
+                  label(for="fullName") Họ tên
                   input(
-                    type="file"
-                    class="form-control-file"
-                    id="avatar"
-                    name="avatar"
-                    accept="image/*"
-                    upload-image-input
+                    type="text"
+                    class="form-control"
+                    id="fullName"
+                    name="fullName"
+                    required
                   )
-                .mt-2
-                  img(
-                    src=""
-                    upload-image-preview
-                    class="img-thumbnail image-preview"
-                    alt="Avatar Preview"
-                    style="max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px;"
+
+                .form-group.mb-3
+                  label(for="email") Email
+                  input(
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required
                   )
-              .form-group.mb-3
-                label(for="role_id") Phân quyền
-                select(name="role_id" id="role_id" class="form-control")
-                  option(disabled selected) -- Chọn --
-                  each item in roles
-                    option(value=item.id) #{item.title}
 
-              .form-group.mb-3
-                label Trạng thái
-                .mt-2
-                  .form-check.form-check-inline
-                    input(
-                      type="radio"
-                      class="form-check-input"
-                      id="statusActive"
-                      name="status"
-                      value="active"
-                      checked
-                    )
-                    label.form-check-label(for="statusActive") Hoạt động
-                  .form-check.form-check-inline
-                    input(
-                      type="radio"
-                      class="form-check-input"
-                      id="statusInactive"
-                      name="status"
-                      value="inactive"
-                    )
-                    label.form-check-label(for="statusInactive") Dừng hoạt động
+                .form-group.mb-3
+                  label(for="password") Mật khẩu
+                  input(
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    required
+                  )
 
-          .form-group.mt-4
-            button(type="submit" class="btn btn-primary") 
-              i.bi.bi-plus-circle.me-1
-              | Thêm tài khoản mới
+                .form-group.mb-3
+                  label(for="phone") Số điện thoại
+                  input(
+                    type="tel"
+                    class="form-control"
+                    id="phone"
+                    name="phone"
+                    placeholder="Nhập số điện thoại"
+                  )
+
+              .col-md-6
+                .form-group.mb-3(upload-image)
+                  label(for="avatar" class="form-label fw-semibold") Hình ảnh
+                  .input-group
+                    input(
+                      type="file"
+                      class="form-control-file"
+                      id="avatar"
+                      name="avatar"
+                      accept="image/*"
+                      upload-image-input
+                    )
+                  .mt-2
+                    img(
+                      src=""
+                      upload-image-preview
+                      class="img-thumbnail image-preview"
+                      alt="Avatar Preview"
+                      style="max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px;"
+                    )
+                .form-group.mb-3
+                  label(for="role_id") Phân quyền
+                  select(name="role_id" id="role_id" class="form-control")
+                    option(disabled selected) -- Chọn --
+                    each item in roles
+                      option(value=item.id) #{item.title}
+
+                .form-group.mb-3
+                  label Trạng thái
+                  .mt-2
+                    .form-check.form-check-inline
+                      input(
+                        type="radio"
+                        class="form-check-input"
+                        id="statusActive"
+                        name="status"
+                        value="active"
+                        checked
+                      )
+                      label.form-check-label(for="statusActive") Hoạt động
+                    .form-check.form-check-inline
+                      input(
+                        type="radio"
+                        class="form-check-input"
+                        id="statusInactive"
+                        name="status"
+                        value="inactive"
+                      )
+                      label.form-check-label(for="statusInactive") Dừng hoạt động
+
+            .form-group.mt-4
+              button(type="submit" class="btn btn-primary") 
+                i.bi.bi-plus-circle.me-1
+                | Thêm tài khoản mới

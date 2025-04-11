@@ -66,8 +66,6 @@ module.exports.permissions = async (req, res) => {
 
     const records = await Role.find(find)
 
-    console.log(records)
-
     res.render("admin/pages/roles/permissions", {
         pageTitle: "Phân quyền",
         records: records
