@@ -53,6 +53,7 @@ block main
                             th Giá
                             th Vị trí
                             th Trạng thái
+                            th Người tạo
                             th Hành động
                     tbody
                         each item, index in products
@@ -88,6 +89,10 @@ block main
                                             span(class="badge bg-success") Hoạt động
                                         else 
                                             span(class="badge bg-danger") Dừng hoạt động
+                                td  
+                                    p #{item.accountName}
+                                    if(item.accountName)
+                                        p #{moment(item.createdBy.createdAt).format("DD/MM/YYYY HH:mm:ss")}
                                 td
                                     a(
                                         class="btn btn-info btn-sm"

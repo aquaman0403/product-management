@@ -3,6 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const flash = require("express-flash");
+const moment = require("moment");
 const cookieParser = require('cookie-parser')
 const session = require("express-session");
 require("dotenv").config();
@@ -20,6 +21,7 @@ const systemConfig = require("./config/system");
 database.connect();
 
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
+app.locals.moment = moment;
 
 app.set("view engine", "pug");
 app.set("views", `${__dirname}/views`);
