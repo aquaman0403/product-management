@@ -1,20 +1,32 @@
 .sider
-    .inner-menu
-        ul
-            li
-                a(href=`${prefixAdmin}/dashboard`) Tổng quan
-            if(role.permissions.includes("products_view"))
-                li
-                    a(href=`${prefixAdmin}/products`) Danh sách sản phẩm
-            if(role.permissions.includes("products-category_view"))
-                li
-                    a(href=`${prefixAdmin}/product-categories/`) Danh mục sản phẩm
-            if(role.permissions.includes("roles_view"))
-                li
-                    a(href=`${prefixAdmin}/roles`) Nhóm quyền
-            if(role.permissions.includes("roles_permissions"))
-                li
-                    a(href=`${prefixAdmin}/roles/permissions`) Phân quyền
-            if(role.permissions.includes("accounts_view"))
-                li
-                    a(href=`${prefixAdmin}/accounts`) Danh sách tài khoản
+  .inner-menu
+    ul.nav.flex-column
+      li.nav-item
+        a.nav-link(href=`${prefixAdmin}/dashboard` class=(currentPage === 'dashboard' ? 'active' : ''))
+          i.bi.bi-house-door.me-2
+          span Tổng quan
+      if role.permissions.includes("products_view")
+        li.nav-item
+          a.nav-link(href=`${prefixAdmin}/products` class=(currentPage === 'products' ? 'active' : ''))
+            i.bi.bi-box.me-2
+            span Danh sách sản phẩm
+      if role.permissions.includes("products-category_view")
+        li.nav-item
+          a.nav-link(href=`${prefixAdmin}/product-categories/` class=(currentPage === 'product-categories' ? 'active' : ''))
+            i.bi.bi-tags.me-2
+            span Danh mục sản phẩm
+      if role.permissions.includes("roles_view")
+        li.nav-item
+          a.nav-link(href=`${prefixAdmin}/roles` class=(currentPage === 'roles' ? 'active' : ''))
+            i.bi.bi-shield-lock.me-2
+            span Nhóm quyền
+      if role.permissions.includes("roles_permissions")
+        li.nav-item
+          a.nav-link(href=`${prefixAdmin}/roles/permissions` class=(currentPage === 'roles-permissions' ? 'active' : ''))
+            i.bi.bi-key.me-2
+            span Phân quyền
+      if role.permissions.includes("accounts_view")
+        li.nav-item
+          a.nav-link(href=`${prefixAdmin}/accounts` class=(currentPage === 'accounts' ? 'active' : ''))
+            i.bi.bi-people.me-2
+            span Danh sách tài khoản

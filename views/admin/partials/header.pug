@@ -1,12 +1,16 @@
 header.header
-    .container-fluid
-        .row.align-items-center
-            .col-3
-                .inner-logo
-                    a(href= `${prefixAdmin}/dashboard`) ADMIN
-            .col-9
-                div(class="text-right")
-                    a(
-                        href=`${prefixAdmin}/auth/logout`
-                        class="btn btn-danger btn-sm float-end"
-                    ) Đăng xuất
+  .container-fluid
+    .row.align-items-center
+      .col-3
+        .inner-logo
+          a(href=`${prefixAdmin}/dashboard` class="d-flex align-items-center text-decoration-none")
+            i(class="bi bi-shield-lock-fill me-2 fs-3")
+            span ADMIN
+      .col-9
+        .inner-actions.d-flex.justify-content-end.align-items-center
+          a(href=`${prefixAdmin}/my-account` class="btn btn-outline-light btn-sm me-2")
+            i(class="bi bi-person-circle me-1")
+            span My Account
+          a(href=`${prefixAdmin}/auth/logout` class="btn btn-danger btn-sm")
+            i(class="bi bi-box-arrow-right me-1")
+            span Đăng xuất

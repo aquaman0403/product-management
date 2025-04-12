@@ -1,0 +1,85 @@
+extends ../../layouts/default.pug 
+include ../../mixins/alert.pug
+
+block main
+  +alert-error(5000)
+  +alert-success(5000)
+  .container-fluid
+    h1(class="mb-4") Chỉnh sửa thông tin
+
+    form(
+      action=`${prefixAdmin}/my-account/edit?_method=PATCH`
+      method="POST"
+      enctype="multipart/form-data"
+    )
+      .card.shadow-sm
+        .card-body
+          .row
+            .col-md-6
+              .form-group.mb-3
+                label(for="fullName") Họ tên
+                input(
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  name="fullName"
+                  value= user.fullName
+                  required
+                )
+
+              .form-group.mb-3
+                label(for="email") Email
+                input(
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  value=user.email
+                  required
+                )
+
+              .form-group.mb-3
+                label(for="password") Mật khẩu
+                input(
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  value="user.password"
+                )
+
+              .form-group.mb-3
+                label(for="phone") Số điện thoại
+                input(
+                  type="tel"
+                  class="form-control"
+                  id="phone"
+                  name="phone"
+                  placeholder="Nhập số điện thoại"
+                  value=user.phone
+                )
+
+            .col-md-6
+              .form-group.mb-3(upload-image)
+                label(for="avatar" class="form-label fw-semibold") Hình ảnh
+                .input-group
+                  input(
+                    type="file"
+                    class="form-control-file"
+                    id="avatar"
+                    name="avatar"
+                    accept="image/*"
+                    upload-image-input
+                  )
+                .mt-2
+                  img(
+                    src=user.avatar
+                    upload-image-preview
+                    class="img-thumbnail image-preview"
+                    alt="Avatar Preview"
+                    style="max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px;"
+                  )
+          .form-group.mt-4
+            button(type="submit" class="btn btn-primary") 
+              i.bi.bi-plus-circle.me-1
+              | Lưu thông tin
