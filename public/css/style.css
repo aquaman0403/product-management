@@ -1,15 +1,15 @@
-/*Header*/
+/* Header */
 .header {
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-}   
+    padding: 15px 0;
+}
 
 .header .inner-logo img {
-    max-height: 50px;
+    max-height: 60px;
     max-width: 100%;
 }
 
-.header .inner-menu > ul {
+.header .inner-menu>ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -19,9 +19,10 @@
     flex-wrap: wrap;
 }
 
-.header .inner-menu > ul > li {
-    margin-left: 20px;
+.header .inner-menu>ul>li {
+    margin-left: 25px;
 }
+
 /* End Header */
 
 /* Footer */
@@ -29,34 +30,38 @@
     background: #333;
     color: #fff;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
+    font-size: 14px;
 }
+
 /* End Footer */
 
 /* Container và tiêu đề chính */
 .container {
     max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 .box-head {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .box-head h2 {
-    font-size: 28px;
-    font-weight: 600;
-    color: #333;
+    font-size: 32px;
+    font-weight: 700;
+    color: #222;
 }
 
 /* Sản phẩm */
 .product-item {
     border: 1px solid #e0e0e0;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     height: 100%;
     display: flex;
@@ -65,18 +70,25 @@
 
 .product-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.inner-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
 }
 
 .inner-image img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     display: block;
+    background-color: #f5f5f5;
 }
 
 .inner-content {
-    padding: 15px;
+    padding: 20px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -85,27 +97,227 @@
 
 .inner-title {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     color: #222;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    text-decoration: none;
+    /* Remove underline */
+}
+
+.inner-title a {
+    text-decoration: none;
+    /* Ensure the link inside title has no underline */
+    color: #222;
+    /* Match the title color */
+}
+
+.inner-title a:hover {
+    color: #1976d2;
+    /* Add a subtle hover effect for the title link */
 }
 
 /* Giá */
+.inner-price {
+    display: flex;
+    justify-content: flex-end;
+    /* Align price to the right */
+    align-items: center;
+    gap: 12px;
+    /* Space between price elements */
+}
+
 .inner-price-new {
-    color: #e53935;
-    font-size: 18px;
-    font-weight: bold;
+    color: #d32f2f;
+    font-size: 24px;
+    /* Larger font size for emphasis */
+    font-weight: 700;
 }
 
 .inner-price-old {
     text-decoration: line-through;
-    color: #888;
-    font-size: 14px;
-    margin-left: 10px;
+    color: #999;
+    font-size: 16px;
+    /* Slightly larger for better readability */
 }
 
 .inner-discount {
-    color: #43a047;
+    color: #388e3c;
     font-size: 14px;
     font-weight: 500;
+    background-color: #e8f5e9;
+    padding: 4px 10px;
+    /* Slightly larger padding */
+    border-radius: 12px;
+    display: inline-block;
+}
+
+/* Sub-Menu */
+.inner-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.inner-menu ul li {
+    position: relative;
+    margin-right: 30px;
+}
+
+.inner-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.inner-menu ul li a:hover {
+    color: #007bff;
+}
+
+/* Submenu */
+.inner-menu ul li ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    min-width: 200px;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.inner-menu ul li:hover>ul {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Nested Submenu */
+.inner-menu ul li ul li {
+    margin: 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.inner-menu ul li ul li:last-child {
+    border-bottom: none;
+}
+
+.inner-menu ul li ul li a {
+    font-size: 14px;
+    padding: 12px 20px;
+    color: #555;
+}
+
+.inner-menu ul li ul li a:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+/* Third Level Submenu - Adjust Position */
+.inner-menu ul li ul li ul {
+    top: 0;
+    left: 100%;
+    /* Mặc định mở sang phải */
+    border-radius: 8px;
+}
+
+/* Đảm bảo submenu cấp 3 hiển thị */
+.inner-menu ul li ul li:hover>ul {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Điều chỉnh submenu để mở sang trái nếu không đủ chỗ */
+.inner-menu ul li ul li {
+    position: relative;
+}
+
+.inner-menu ul li ul li ul {
+    /* Xóa left: 100% mặc định và thêm logic mở trái/phải */
+}
+
+/* Dùng :where để áp dụng cho submenu cấp 2 và 3 */
+.inner-menu ul:where(li ul, li ul li ul) {
+    /* Đảm bảo submenu không vượt ra ngoài viewport */
+    max-width: 200px;
+    /* Giới hạn chiều rộng nếu cần */
+}
+
+/* Mở sang trái cho submenu cấp 3 nếu gần mép phải */
+.inner-menu ul li ul li ul {
+    left: auto;
+    right: 100%;
+    /* Mở sang trái mặc định cho cấp 3 */
+}
+
+/* Nếu submenu cấp 2 cũng cần mở trái (tùy trường hợp) */
+.inner-menu ul li ul {
+    /* Giữ mặc định left: 0, nhưng thêm tùy chọn mở trái nếu cần */
+}
+
+/* Animation for Smoothness */
+.inner-menu ul li ul::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    border: 5px solid transparent;
+    border-bottom-color: #fff;
+}
+
+/* Điều chỉnh mũi tên cho submenu mở sang trái */
+.inner-menu ul li ul li ul::before {
+    left: auto;
+    right: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .inner-menu ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .inner-menu ul li {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .inner-menu ul li ul {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+        width: 100%;
+        transform: none;
+        opacity: 1;
+        display: none;
+    }
+
+    .inner-menu ul li:hover>ul {
+        display: block;
+    }
+
+    .inner-menu ul li ul li ul {
+        position: static;
+        width: 100%;
+        right: auto;
+        /* Không cần mở trái trên mobile */
+    }
+
+    .inner-menu ul li ul::before {
+        display: none;
+        /* Ẩn mũi tên trên mobile */
+    }
 }
