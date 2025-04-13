@@ -244,10 +244,6 @@
     position: relative;
 }
 
-.inner-menu ul li ul li ul {
-    /* Xóa left: 100% mặc định và thêm logic mở trái/phải */
-}
-
 /* Dùng :where để áp dụng cho submenu cấp 2 và 3 */
 .inner-menu ul:where(li ul, li ul li ul) {
     /* Đảm bảo submenu không vượt ra ngoài viewport */
@@ -263,9 +259,6 @@
 }
 
 /* Nếu submenu cấp 2 cũng cần mở trái (tùy trường hợp) */
-.inner-menu ul li ul {
-    /* Giữ mặc định left: 0, nhưng thêm tùy chọn mở trái nếu cần */
-}
 
 /* Animation for Smoothness */
 .inner-menu ul li ul::before {
