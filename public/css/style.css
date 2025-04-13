@@ -321,3 +321,99 @@
         /* Ẩn mũi tên trên mobile */
     }
 }
+
+.product-item .inner-featured {
+    position: relative;
+    top: 0;
+    right: 0;
+    background: green;
+    color: white;
+    padding: 3px 6px;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+.inner-thumb {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.inner-thumb img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.inner-thumb img:hover {
+    transform: scale(1.05);
+}
+
+.form-control[type="number"] {
+    width: 100px; /* Compact width */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* Removed appearance: textfield to keep spinners */
+}
+
+.form-control[type="number"]:focus {
+    outline: none;
+    border-color: #28a745; /* Match button color */
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+}
+
+.btn.btn-success.btn-block {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 4px;
+    background-color: #28a745;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn.btn-success.btn-block:hover {
+    background-color: #218838; /* Darker green */
+    transform: translateY(-2px);
+}
+
+.btn.btn-success.btn-block:active {
+    transform: translateY(0);
+}
+
+h1.mb-4 {
+    font-size: 28px; /* Smaller than default h1 (typically ~32px in Bootstrap) */
+    font-weight: 600; /* Maintain boldness */
+    line-height: 1.4; /* Improve readability */
+}
+
+.inner-category {
+    margin-bottom: 16px; /* Space below category */
+    font-size: 14px; /* Smaller text for secondary info */
+}
+
+.inner-category span {
+    color: #6c757d; /* Muted gray for "Danh mục" */
+    font-weight: 500;
+    margin-right: 8px; /* Space between label and link */
+}
+
+.inner-category a {
+    color: #007bff; /* Bootstrap primary blue for links */
+    text-decoration: none; /* Remove default underline */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.inner-category a:hover {
+    color: #0056b3; /* Darker blue on hover */
+    text-decoration: underline; /* Underline on hover for clarity */
+}
