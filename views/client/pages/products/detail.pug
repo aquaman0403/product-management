@@ -1,7 +1,9 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
+include ../../mixins/alert.pug
 
 block main 
+    +alert-success(2000)
     .product-detail
         .container.my-5
             .row 
@@ -23,7 +25,7 @@ block main
                         if (product.stock) 
                             div(class="mb-4") Còn lại <b>#{product.stock}</b> sản phẩm
                         form(
-                            action=`cart/add/${product.id}`
+                            action=`/cart/add/${product.id}`
                             method="POST"
                         )
                             input(
@@ -31,6 +33,7 @@ block main
                                 type="number"
                                 name="quantity"
                                 value="1"
+                                min="1"
                                 max=product.stock
                             )
                             button(
