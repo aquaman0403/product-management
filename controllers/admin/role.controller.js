@@ -14,6 +14,7 @@ module.exports.index =  async (req, res) => {
     })
 } 
 
+// [GET] /admin/roles/create
 module.exports.create = async (req, res) => {
 
     res.render("admin/pages/roles/create", {
@@ -21,6 +22,7 @@ module.exports.create = async (req, res) => {
     })
 }
 
+// [POST] /admin/roles/create
 module.exports.createPost = async (req, res) => {
     const record = new Role(req.body)
     await record.save()
@@ -28,6 +30,7 @@ module.exports.createPost = async (req, res) => {
     res.redirect("/admin/roles")
 }
 
+// [GET] /admin/roles/edit/:id
 module.exports.edit = async (req, res) => {
     try {
         const id = req.params.id
@@ -47,6 +50,7 @@ module.exports.edit = async (req, res) => {
     }
 }
 
+// [PATCH] /admin/roles/edit/:id
 module.exports.editPatch = async (req, res) => {
     try {
         await Role.updateOne({ _id: req.params.id }, req.body);
