@@ -4,8 +4,14 @@ include ../../mixins/alert.pug
 
 block main 
     +alert-success(2000)
+
     .product-detail
         .container.my-5
+            button(
+                class="btn btn-secondary"
+                btn-go-back
+            ) Trở lại
+
             .row 
                 .col-6
                     .inner-thumb

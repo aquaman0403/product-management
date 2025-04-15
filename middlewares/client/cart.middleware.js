@@ -11,7 +11,11 @@ module.exports.cardId = async (req, res, next) => {
             expires: new Date(Date.now() + expiresTime),
         })
     } else {
+        const cart = await Cart.findOne({ _id: req.cookies.cartId })
         
+        cart.totalQuantity = cart.products.reduce((sum, item) => sum + item.quantity, 0)
+
+        res.locals.miniCart = cart
     }
     next()
 }
