@@ -6,11 +6,8 @@ block main
     .container.my-5 
         .row.justify-content-center 
             .col-8
-                h1(class="text-center") Đăng ký tài khoản
-                form(method="POST" action=`/user/register`)
-                    div(class="mb-3")
-                        label(for="fullName" class="form-label") Họ và tên
-                        input(type="text" class="form-control" id="fullName" name="fullName" placeholder="" required)
+                h1(class="text-center") Đăng nhập tài khoản
+                form(method="POST" action=`/user/login`)
                     div(class="mb-3")
                         label(for="email" class="form-label") Email
                         input(type="email" class="form-control" id="email" name="email" placeholder="" required)
@@ -18,5 +15,5 @@ block main
                         label(for="password" class="form-label") Mật khẩu
                         input(type="password" class="form-control" id="password" name="password" placeholder="" required)
                     div(class="d-grid")
-                        button(type="submit" class="btn btn-primary") Đăng ký
+                        button(type="submit" class="btn btn-primary") Đăng nhập
     script(src="/js/script.js")
