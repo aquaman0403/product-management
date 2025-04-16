@@ -1,5 +1,7 @@
 const User = require("../../models/user.model")
+const ForgotPassword = require("../../models/forgot-password.model")
 const md5 = require("md5")
+const { generateRandomNumber } = require("../../helpers/generate")
 
 module.exports.register = async (req, res) => {
     res.render("client/pages/user/register", {
@@ -68,4 +70,71 @@ module.exports.logout = async (req, res) => {
     res.clearCookie("tokenUser")
     req.flash("success", "Đăng xuất tài khoản thành công!")
     res.redirect("/")
+}
+
+module.exports.forgotPassword = async (req, res) => {
+    res.render("client/pages/user/forgot-password", {
+        pageTile: "Quên mật khẩu",
+    })
+}
+
+module.exports.forgotPasswordPost = async (req, res) => {
+    const email = req.body.email
+
+    const user = await User.findOne({
+        email: email,
+        deleted: false,
+    })
+
+    if (!user) {
+        req.flash("error", "Email không tồn tại!")
+        res.redirect("back")
+        return
+    }
+
+    const objectForgotPassword = {
+        email: email,
+        otp: generateRandomNumber(6),
+        expiredAt: Date.now(),
+    }
+
+    const forgotPassword = new ForgotPassword(objectForgotPassword)
+    await forgotPassword.save()
+
+    res.redirect(`user/password/otp?email=${email}`)
+}
+
+module.exports.otpPassword = async (req, res) => {
+    const email = req.query.email
+
+    res.render("client/pages/user/otp-password", {
+        pageTile: "Nhập mã OTP",
+        email: email,
+    })
+}
+
+module.exports.otpPasswordPost = async (req, res) => {
+    const email = req.body.email
+    const otp = req.body.otp
+
+    const forgotPassword = await ForgotPassword.findOne({
+        email: email,
+        otp: otp,
+    })
+
+    const user = await User.findOne({
+        email: email,
+        deleted: false,
+    })
+    
+
+    if (!forgotPassword) {
+        req.flash("error", "Mã OTP không đúng hoặc đã hết hạn!")
+        res.redirect("back")
+        return
+    }
+    
+    res.cookie("tokenUser", user.tokenUser)
+
+    res.redirect(`/user/password/reset`)
 }
