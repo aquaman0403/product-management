@@ -1,0 +1,18 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+    +alert-error(5000)
+    .container.my-5
+        .row.justify-content-center
+            .col-8
+                h1.text-center Thông tin cá nhân
+                .card
+                    .card-body
+                        dl.row
+                            dt.col-sm-4 Họ và tên
+                            dd.col-sm-8 #{user && user.fullName ? user.fullName : 'Chưa cập nhật'}
+                            dt.col-sm-4 Email
+                            dd.col-sm-8 #{user && user.email ? user.email : 'Chưa cập nhật'}
+                        .d-grid.mt-4
+                            a.btn.btn-primary(href="/user/edit") Chỉnh sửa thông tin
