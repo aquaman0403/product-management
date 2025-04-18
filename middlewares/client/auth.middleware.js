@@ -5,10 +5,12 @@ module.exports.requireAuth = async (req, res, next) => {
         res.redirect("/user/login")
         return
     } 
-    
+
+
     const user = await User.findOne({
-        tokenUser: req.cookies.userToken
+        tokenUser: req.cookies.tokenUser
     }).select("-password")
+
 
     if (!user) {
         res.redirect("/user/login")

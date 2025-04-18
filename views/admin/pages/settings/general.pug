@@ -2,82 +2,72 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
-    .container.mt-5
-        .row.justify-content-center
-            .col-md-8
-                .card.shadow
-                    .card-header.bg-primary.text-white.text-center
-                        h1.mb-0 Cài đặt chung
-                    .card-body
-                        +alert-error(5000)
-                        +alert-success(5000)
-                        form(
-                            action=`${prefixAdmin}/settings/general?_method=PATCH`
-                            method="POST"
-                            enctype="multipart/form-data"
-                        )
-                            .form-group.mb-3
-                                label(for="websiteName").fw-bold Tên trang
-                                input(
-                                    type="text"
-                                    name="websiteName"
-                                    id="websiteName"
-                                    class="form-control"
-                                    value=(settingGeneral ? settingGeneral.websiteName : '')
-                                )
-                            .form-group.mb-3(position="relative" upload-image)
-                                label(for="logo").fw-bold Logo
-                                input(
-                                    type="file"
-                                    name="logo"
-                                    id="logo"
-                                    class="form-control-file"
-                                    accept="image/*"
-                                    upload-image-input
-                                )
-                                img(
-                                    src=(settingGeneral ? settingGeneral.logo : '')
-                                    class="image-preview mt-2 border rounded"
-                                    upload-image-preview
-                                )
-                            .form-group.mb-3
-                                label(for="phone").fw-bold Số điện thoại
-                                input(
-                                    type="text"
-                                    name="phone"
-                                    id="phone"
-                                    class="form-control"
-                                    value=(settingGeneral ? settingGeneral.phone : '')
-                                )
-                            .form-group.mb-3
-                                label(for="email").fw-bold Email
-                                input(
-                                    type="text"
-                                    name="email"
-                                    id="email"
-                                    class="form-control"
-                                    value=(settingGeneral ? settingGeneral.email : '')
-                                )
-                            .form-group.mb-3
-                                label(for="address").fw-bold Địa chỉ
-                                input(
-                                    type="text"
-                                    name="address"
-                                    id="address"
-                                    class="form-control"
-                                    value=(settingGeneral ? settingGeneral.address : '')
-                                )
-                            .form-group.mb-4
-                                label(for="copyright").fw-bold Bản quyền
-                                input(
-                                    type="text"
-                                    name="copyright"
-                                    id="copyright"
-                                    class="form-control"
-                                    value=(settingGeneral ? settingGeneral.copyright : '')
-                                )
-                            .form-group.text-center
-                                button(
-                                    type="submit"
-                                    class="btn btn-primary px-5"
-                                ) Lưu lại
+    h1 Cài đặt chung
+    +alert-error(5000)
+    +alert-success(5000)
+    form(
+        action=`${prefixAdmin}/settings/general?_method=PATCH`
+        method="POST"
+        enctype="multipart/form-data"
+    )
+        div(class="form-group")
+            label(for="websiteName") Tên trang
+            input(
+                type="text"
+                name="websiteName"
+                id="websiteName"
+                class="form-control"
+            )
+        div(class="form-group", upload-image)
+            label(for="logo") Logo
+            input(
+                type="file"
+                name="logo"
+                id="logo"
+                class="form-control-file"
+                accept="image/*"
+                upload-image-input
+            )
+            img(
+                src=""
+                class="image-preview"
+                upload-image-preview
+            )
+        div(class="form-group")
+            label(for="phone") Số điện thoại
+            input(
+                type="text"
+                name="phone"
+                id="phone"
+                class="form-control"
+            )
+        div(class="form-group")
+            label(for="email")  Email
+            input(
+                type="text"
+                name="email"
+                id="email"
+                class="form-control"
+            )
+        div(class="form-group")
+            label(for="address")  Địa chỉ
+            input(
+                type="text"
+                name="address"
+                id="address"
+                class="form-control"
+            )
+        div(class="form-group")
+            label(for="copyright")  Bản quyền
+            input(
+                type="text"
+                name="copyright"
+                id="copyright"
+                class="form-control"
+            )
+        div(class="form-group")
+            button(
+                type="submit"
+                class="btn btn-primary"
+            ) Lưu lại   
+    

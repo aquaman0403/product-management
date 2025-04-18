@@ -6,12 +6,21 @@ const flash = require("express-flash");
 const moment = require("moment");
 const cookieParser = require('cookie-parser')
 const session = require("express-session");
+
+const { Server } = require("socket.io");
+const http = require("http");
+
 require("dotenv").config();
 const database = require("./config/database");
 const route = require("./routes/client/index.route");
 const routeAdmin = require("./routes/admin/index.route");
 const app = express();
 const port = process.env.PORT;
+
+const server = http.createServer(app);
+// Socket io
+const io = new Server(server)
+global._io = io
 
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -46,13 +55,6 @@ app.get("*", (req, res) => {
     });
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
-}).on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-        console.error(`Port ${port} is already in use. Please use a different port.`);
-        process.exit(1);
-    } else {
-        throw err;
-    }
-});
+})

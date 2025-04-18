@@ -348,7 +348,8 @@
 }
 
 .form-control[type="number"] {
-    width: 100px; /* Compact width */
+    width: 100px;
+    /* Compact width */
     padding: 8px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -358,7 +359,8 @@
 
 .form-control[type="number"]:focus {
     outline: none;
-    border-color: #28a745; /* Match button color */
+    border-color: #28a745;
+    /* Match button color */
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
 }
 
@@ -374,7 +376,8 @@
 }
 
 .btn.btn-success.btn-block:hover {
-    background-color: #218838; /* Darker green */
+    background-color: #218838;
+    /* Darker green */
     transform: translateY(-2px);
 }
 
@@ -383,32 +386,43 @@
 }
 
 h1.mb-4 {
-    font-size: 28px; /* Smaller than default h1 (typically ~32px in Bootstrap) */
-    font-weight: 600; /* Maintain boldness */
-    line-height: 1.4; /* Improve readability */
+    font-size: 28px;
+    /* Smaller than default h1 (typically ~32px in Bootstrap) */
+    font-weight: 600;
+    /* Maintain boldness */
+    line-height: 1.4;
+    /* Improve readability */
 }
 
 .inner-category {
-    margin-bottom: 16px; /* Space below category */
-    font-size: 14px; /* Smaller text for secondary info */
+    margin-bottom: 16px;
+    /* Space below category */
+    font-size: 14px;
+    /* Smaller text for secondary info */
 }
 
 .inner-category span {
-    color: #6c757d; /* Muted gray for "Danh mục" */
+    color: #6c757d;
+    /* Muted gray for "Danh mục" */
     font-weight: 500;
-    margin-right: 8px; /* Space between label and link */
+    margin-right: 8px;
+    /* Space between label and link */
 }
 
 .inner-category a {
-    color: #007bff; /* Bootstrap primary blue for links */
-    text-decoration: none; /* Remove default underline */
+    color: #007bff;
+    /* Bootstrap primary blue for links */
+    text-decoration: none;
+    /* Remove default underline */
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .inner-category a:hover {
-    color: #0056b3; /* Darker blue on hover */
-    text-decoration: underline; /* Underline on hover for clarity */
+    color: #0056b3;
+    /* Darker blue on hover */
+    text-decoration: underline;
+    /* Underline on hover for clarity */
 }
 
 /* Show Alert */
@@ -417,25 +431,26 @@ h1.mb-4 {
     top: 10px;
     right: 0px;
     z-index: 9999;
-  }
-  
-  [show-alert].alert-hidden {
+}
+
+[show-alert].alert-hidden {
     animation-name: alert-hidden;
     animation-duration: 0.5s;
     animation-fill-mode: both;
-  }
-  
-  @keyframes alert-hidden {
+}
+
+@keyframes alert-hidden {
     from {
-      right: 15px;
+        right: 15px;
     }
+
     to {
-      right: -100%;
-      display: none;
+        right: -100%;
+        display: none;
     }
-  }
-  
-  [show-alert] [close-alert] {
+}
+
+[show-alert] [close-alert] {
     background: #ffffffc4;
     display: inline-block;
     width: 24px;
@@ -445,5 +460,134 @@ h1.mb-4 {
     font-weight: 600;
     border-radius: 50%;
     cursor: pointer;
-  }
-  /* End Show Alert */
+}
+
+/* End Show Alert */
+
+
+/* Container chính của vùng chat */
+.chat {
+    width: 100%;
+    max-width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    overflow: hidden;
+}
+
+/* Phần thân chứa các tin nhắn, tự động cuộn */
+.chat .inner-body {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: #fff;
+}
+
+/* Chung cho mỗi khung tin nhắn */
+.chat .inner-body .inner-incoming,
+.chat .inner-body .inner-outgoing {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+/* Tin nhắn của người khác (bên trái) */
+.chat .inner-body .inner-incoming {
+    align-items: flex-start;
+}
+
+/* Tin nhắn của mình (bên phải) */
+.chat .inner-body .inner-outgoing {
+    align-items: flex-end;
+}
+
+/* Tên người gửi, chỉ hiện cho tin nhắn đến */
+.chat .inner-body .inner-incoming .inner-name {
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/* Nội dung tin nhắn */
+.chat .inner-body .inner-content {
+    max-width: 70%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* Style khác nhau cho 2 loại tin nhắn */
+.chat .inner-body .inner-incoming .inner-content {
+    background: #f1f1f1;
+    color: #333;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.chat .inner-body .inner-outgoing .inner-content {
+    background: #007bff;
+    color: #fff;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+/* Phần nhập tin nhắn và nút gửi */
+.chat .inner-foot {
+    padding: 12px;
+    border-top: 1px solid #eee;
+    background: #f9f9f9;
+}
+
+.chat .inner-form {
+    display: flex;
+    gap: 8px;
+}
+
+.chat .inner-form input[type="text"] {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.chat .inner-form input[type="text"]:focus {
+    border-color: #007bff;
+}
+
+.chat .inner-form button {
+    width: 50px;
+    /* Chiều rộng = chiều cao */
+    height: 50px;
+    border-radius: 50%;
+    /* Biến thành hình tròn */
+    padding: 0;
+    /* Loại bỏ padding mặc định */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Icon nằm giữa */
+    background: #007bff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.chat .inner-form button:hover {
+    background: #0056b3;
+}
+
+.chat .inner-form button i {
+    font-size: 1.2rem;
+    color: #fff;
+}

@@ -1,0 +1,33 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/box-head.pug
+
+block main 
+    .container.my-3 
+        .row
+            .col-12 
+                +box-head("Chat")
+        
+        .row 
+            .col-12 
+                .chat(my-id=user.id)
+                    .inner-body
+                        each chat in chats
+                            div(class=(chat.infoUser.id == user.id ? "inner-outgoing" : "inner-incoming"))
+                                if(chat.infoUser.id != user.id)
+                                    .inner-name #{chat.infoUser.fullName}
+                                .inner-content 
+                                    | #{chat.content}
+                    .inner-foot 
+                        form(
+                            class="inner-form"
+                            action=""
+                        )
+                            input(
+                                type="text"
+                                class="form-control"
+                                placeholder="Type a message..."
+                                name="content"
+                            )
+                            button(type="submit")
+                                i.fa-solid.fa-paper-plane
