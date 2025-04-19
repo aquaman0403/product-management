@@ -591,3 +591,31 @@ h1.mb-4 {
     font-size: 1.2rem;
     color: #fff;
 }
+.tooltip {
+    visibility: hidden;
+}
+
+.tooltip.shown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.button-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.button-icon:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+.button-icon i {
+    color: #555;
+}
