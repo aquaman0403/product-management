@@ -619,3 +619,73 @@ h1.mb-4 {
 .button-icon i {
     color: #555;
 }
+
+.inner-list-typing {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.box-typing {
+    background-color: #f1f0f0;
+    border-radius: 20px;
+    padding: 10px 15px;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.box-typing .inner-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.inner-dots {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 10px;
+}
+
+.inner-dots span {
+    width: 6px;
+    height: 6px;
+    margin-right: 4px;
+    background-color: #555;
+    border-radius: 50%;
+    animation: blink 1.4s infinite ease-in-out both;
+}
+
+.inner-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.inner-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0%, 80%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

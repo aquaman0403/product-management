@@ -11,6 +11,7 @@ if (formSendData) {
         if (content) {
             socket.emit("CLIENT_SEND_MESSAGE", content)
             e.target.elements.content.value = "";
+            socket.emit("CLIENT_SEND_TYPING", "hidden")
         }
     })
 }
@@ -18,8 +19,10 @@ if (formSendData) {
 socket.on("SERVER_RETURN_MESSAGE", (data) => {
     console.log(`Data:`,data);
     const myId = document.querySelector("[my-id]").getAttribute("my-id");
-    console.log(myId);
     const body = document.querySelector(".chat .inner-body");
+    const boxtyping = document.querySelector(".chat .inner-list-typing");
+
+
     const div = document.createElement("div");
 
     let htmlFullName = "";
@@ -37,9 +40,22 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
         <div class="inner-content">${data.content}</div>
     `;
 
-    body.appendChild(div);
+    body.insertBefore(div, boxtyping);
     body.scrollTop = body.scrollHeight;
 })
+
+// Show typing
+var timeOut
+const showTyping = () => {
+    socket.emit("CLIENT_SEND_TYPING", "show")
+
+    clearTimeout(timeOut)
+
+    timeOut = setTimeout(() => {
+        socket.emit("CLIENT_SEND_TYPING", "hidden")
+    }
+    , 3000)
+}
 
 // Scroll to bottom
 const bodyChat = document.querySelector(".chat .inner-body");
@@ -65,5 +81,46 @@ if (emojiPicker) {
     emojiPicker.addEventListener("emoji-click", (event) => {
         const emoji = event.detail.unicode;
         inputChat.value = inputChat.value + emoji;
+
+        const end = inputChat.value.length;
+        inputChat.setSelectionRange(end, end);
+        inputChat.focus();
+
+        showTyping()
     });
+
+    inputChat.addEventListener("keyup", () => {
+        showTyping()
+    })
+}
+
+
+const elementsListTyping = document.querySelector(".chat .inner-list-typing");
+if (elementsListTyping) {
+    socket.on("SERVER_RETURN_TYPING", (data) => {
+        if(data.type =="show") {
+            const existTyping = document.querySelector(`[user-id="${data.userId}"]`);
+            if (!existTyping) {
+                const boxtyping = document.createElement("div");
+                boxtyping.classList.add("box-typing");
+                boxtyping.setAttribute("user-id", data.userId);
+
+                boxtyping.innerHTML = `
+                    <div class="inner-name">${data.fullName}</div>
+                    <div class="inner-dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                `;
+                elementsListTyping.appendChild(boxtyping);
+                bodyChat.scrollTop = bodyChat.scrollHeight;
+            }
+        } else {
+            const existTyping = document.querySelector(`[user-id="${data.userId}"]`);
+            if (existTyping && elementsListTyping.contains(existTyping)) {
+                elementsListTyping.removeChild(existTyping);
+            }
+        }
+    })
 }
