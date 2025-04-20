@@ -591,6 +591,7 @@ h1.mb-4 {
     font-size: 1.2rem;
     color: #fff;
 }
+
 .tooltip {
     visibility: hidden;
 }
@@ -669,10 +670,14 @@ h1.mb-4 {
 }
 
 @keyframes blink {
-    0%, 80%, 100% {
+
+    0%,
+    80%,
+    100% {
         opacity: 0;
         transform: scale(0.8);
     }
+
     40% {
         opacity: 1;
         transform: scale(1);
@@ -684,8 +689,109 @@ h1.mb-4 {
         opacity: 0;
         transform: translateY(5px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Container for the card */
+.box-user {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 400px;
+    /* Set a maximum width for the card */
+    width: 100%;
+    /* Ensure it takes full available width up to max-width */
+    margin: 0 auto;
+    /* Center the card within the column */
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Hover effect for the card */
+.box-user:hover {
+    transform: translateY(-5px);
+}
+
+/* Avatar styling */
+.inner-avatar {
+    flex-shrink: 0;
+}
+
+.inner-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+}
+
+/* Info section styling */
+.inner-info {
+    flex-grow: 1;
+}
+
+.inner-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Buttons styling */
+.inner-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
+    .box-user {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+        max-width: 300px;
+        /* Reduce max-width for smaller screens */
+    }
+
+    .inner-avatar img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .inner-buttons {
+        justify-content: center;
     }
 }

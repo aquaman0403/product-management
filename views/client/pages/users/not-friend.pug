@@ -1,0 +1,25 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+  .container
+    include ../../partials/list-btn-users.pug
+    
+    .row
+      .col-12 
+        +box-head("Danh sách người dùng")
+    .row
+      each user in users
+        .col-6 
+          div(class="box-user")
+            div(class="inner-avatar")
+              img(src=user.avatar || "https://robohash.org/ecaefdd8febabb14cacab434b2457736?set=set4&bgset=&size=400x400", alt="Avatar")
+            div(class="inner-info")
+              div(class="inner-name mb-1") #{user.fullName}
+              div(class="inner-buttons")
+                button(
+                  class="btn btn-primary btn-sm mb-1 me-1"
+                ) Kết bạn 
+                button(
+                  class="btn btn-secondary btn-sm mb-1"
+                ) Huỷ

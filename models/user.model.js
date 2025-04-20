@@ -3,6 +3,7 @@ const generate = require("../helpers/generate")
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
+    avatar: String,
     fullName: String,
     email: String,
     password: String,
@@ -12,6 +13,12 @@ const userSchema = new mongoose.Schema({
     },
     phone: String,
     avatar: String,
+    acceptFriends: Array,
+    requestFriends: Array,
+    friendList: [{
+        user_id: String,
+        room_chat_id: String
+    }],
     status: {
         type: String,
         enum: ["active", "inactive", "banned"],
