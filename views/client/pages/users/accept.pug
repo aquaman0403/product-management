@@ -7,7 +7,7 @@ block main
     
     .row
       .col-12 
-        +box-head("Danh sách người dùng")
+        +box-head("Lời mời đã nhận")
     .row
       each user in users
         .col-6 
@@ -19,9 +19,14 @@ block main
               div(class="inner-buttons")
                 button(
                   class="btn btn-primary btn-sm mb-1 me-1"
-                  btn-add-friend=user.id
-                ) Kết bạn 
+                  btn-accept-friend=user.id
+                ) Chấp nhận 
                 button(
                   class="btn btn-secondary btn-sm mb-1"
-                  btn-cancel-friend=user.id
-                ) Huỷ
+                  btn-refuse-friend=user.id
+                ) Xoá
+                 button(
+                  class="btn btn-secondary btn-sm mb-1"
+                  btn-deleted-friend=user.id
+                  disabled
+                ) Đã xoá

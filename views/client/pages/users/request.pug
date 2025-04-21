@@ -7,11 +7,11 @@ block main
     
     .row
       .col-12 
-        +box-head("Danh sách người dùng")
+        +box-head("Lời mời đã gửi")
     .row
       each user in users
         .col-6 
-          div(class="box-user")
+          div(class="box-user add")
             div(class="inner-avatar")
               img(src=user.avatar || "https://robohash.org/ecaefdd8febabb14cacab434b2457736?set=set4&bgset=&size=400x400", alt="Avatar")
             div(class="inner-info")

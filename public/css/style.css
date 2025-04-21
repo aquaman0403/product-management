@@ -795,3 +795,30 @@ h1.mb-4 {
         justify-content: center;
     }
 }
+
+.box-user [btn-cancel-friend] {
+    display: none !important;
+}
+.box-user.add [btn-add-friend] {
+    display: none !important;;
+}
+
+.box-user.add [btn-cancel-friend] {
+    display: inline-block !important;;
+}
+
+.box-user [btn-deleted-friend] {
+    display: none !important;
+}
+
+.box-user.refuse [btn-accept-friend] {
+    display: none !important;
+}
+
+.box-user.refuse [btn-refuse-friend] {
+    display: none !important;
+}
+
+.box-user.refuse [btn-deleted-friend] {
+    display: inline-block !important;
+}
