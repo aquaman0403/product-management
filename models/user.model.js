@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     avatar: String,
     acceptFriends: Array,
     requestFriends: Array,
+    statusOnline: String,
     friendList: [{
         user_id: String,
         room_chat_id: String
