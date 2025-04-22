@@ -822,3 +822,19 @@ h1.mb-4 {
 .box-user.refuse [btn-deleted-friend] {
     display: inline-block !important;
 }
+
+.box-user [btn-accepted-friend] {
+    display: none !important;
+}
+
+.box-user.accepted [btn-accept-friend] {
+    display: none !important;
+}
+
+.box-user.accepted [btn-refuse-friend] {
+    display: none !important;
+}
+
+.box-user.accepted [btn-accepted-friend] {
+    display: inline-block !important;
+}

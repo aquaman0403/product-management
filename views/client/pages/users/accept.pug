@@ -8,9 +8,9 @@ block main
     .row
       .col-12 
         +box-head("Lời mời đã nhận")
-    .row
+    .row(data-users-accept=user.id)
       each user in users
-        .col-6 
+        .col-6(user-id=user.id)
           div(class="box-user")
             div(class="inner-avatar")
               img(src=user.avatar || "https://robohash.org/ecaefdd8febabb14cacab434b2457736?set=set4&bgset=&size=400x400", alt="Avatar")
@@ -30,3 +30,8 @@ block main
                   btn-deleted-friend=user.id
                   disabled
                 ) Đã xoá
+                button(
+                  class="btn btn-primary btn-sm mb-1 me-1"
+                  btn-accepted-friend=user.id
+                  disabled
+                ) Đã chấp nhận
