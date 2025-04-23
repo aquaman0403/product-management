@@ -7,12 +7,8 @@ const userSchema = new mongoose.Schema({
     fullName: String,
     email: String,
     password: String,
-    tokenUser: {
-        type: String,
-        default: generate.generateRandomString(20)
-    },
+    tokenUser: String, // Không sử dụng default ở đây
     phone: String,
-    avatar: String,
     acceptFriends: Array,
     requestFriends: Array,
     statusOnline: String,
@@ -32,6 +28,14 @@ const userSchema = new mongoose.Schema({
     deletedAt: Date
 }, {
     timestamps: true
+})
+
+// Middleware để tạo tokenUser trước khi lưu
+userSchema.pre("save", function (next) {
+    if (!this.tokenUser) {
+        this.tokenUser = generate.generateRandomString(20) // Tạo token mới mỗi lần lưu
+    }
+    next()
 })
 
 const User = mongoose.model("User", userSchema, "users")
