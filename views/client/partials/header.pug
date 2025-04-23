@@ -37,12 +37,12 @@ header.header
                         li 
                             a(href="/cart") Giỏ hàng (#{miniCart ? miniCart.totalQuantity : "0"})
                         if(user)
-                            //- li 
-                            //-     a(href="/chat") Chat
+                            li 
+                                a(href="/rooms-chat") Phòng chat
                             li 
                                 a(href="/users/friends") Bạn bè
                             li 
-                                a(href="/user/info") Thông tin cá nhân
+                                a(href="/user/info") #{user.fullName}
                             li 
                                 a(href="/user/logout") Đăng xuất
                         else
