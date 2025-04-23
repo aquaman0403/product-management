@@ -8,9 +8,9 @@ block main
     .row
       .col-12 
         +box-head("Danh sách bạn bè")
-    .row
+    .row(data-users-friend)
       each user in users
-        .col-6
+        .col-6(user-id=user.id)
           div(class="box-user")
             div(class="inner-avatar")
               img(src=user.avatar || "https://robohash.org/ecaefdd8febabb14cacab434b2457736?set=set4&bgset=&size=400x400", alt="Avatar")

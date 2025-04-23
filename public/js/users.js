@@ -149,3 +149,25 @@ socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
     dataUsersAccept.removeChild(boxUserRemove)
   }
 })
+
+// SERVER_RETURN_USER_ONLINE
+socket.on("SERVER_RETURN_USER_ONLINE", (userId) => {
+  const dataUsersFriend = document.querySelector("[data-users-friend]")
+  if (dataUsersFriend) {
+    const boxUser = dataUsersFriend.querySelector(`[user-id="${userId}"]`)
+    if (boxUser) {
+      boxUser.querySelector("[status]").setAttribute("status", "online")
+    }
+  }
+})
+
+// SERVER_RETURN_USER_OFFLINE
+socket.on("SERVER_RETURN_USER_OFFLINE", (userId) => {
+  const dataUsersFriend = document.querySelector("[data-users-friend]")
+  if (dataUsersFriend) {
+    const boxUser = dataUsersFriend.querySelector(`[user-id="${userId}"]`)
+    if (boxUser) {
+      boxUser.querySelector("[status]").setAttribute("status", "offline")
+    }
+  }
+})
